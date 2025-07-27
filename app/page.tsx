@@ -29,42 +29,21 @@ export default function Home() {
           className="p-8 rounded-lg w-full max-w-2xl"
           style={{ backgroundColor: "var(--card-background)" }}
         >
-          <h2 className="font-bold text-xl">Variantes de Botones</h2>
+          <h2 className="font-bold text-xl">Animaciones y Efectos</h2>
 
-          <HStack spacing="1rem" align="center">
-            <Button variant="standard" color="primary">
-              Standard Primary
+          {/* Demostración de las nuevas props */}
+          <HStack spacing="1rem" align="center" className="flex-wrap">
+            <Button color="primary" withShadow>
+              Con Sombra
             </Button>
-            <Button variant="outlined" color="primary">
-              Outlined
+            <Button color="primary" withPulse>
+              Con Pulso
             </Button>
-            <Button variant="ghost" color="primary">
-              Ghost
+            <Button color="primary" withShine>
+              Con Brillo
             </Button>
-          </HStack>
-
-          <HStack spacing="1rem" align="center">
-            <Button variant="standard" color="secondary">
-              Standard Secondary
-            </Button>
-            <Button variant="outlined" color="secondary">
-              Outlined
-            </Button>
-            <Button variant="ghost" color="secondary">
-              Ghost
-            </Button>
-          </HStack>
-
-          <h2 className="font-bold text-xl mt-4">Estados y Customización</h2>
-
-          <HStack spacing="1rem" align="center">
-            <Button disabled>Botón Deshabilitado</Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              className="rounded-full !border-4 !px-8"
-            >
-              Custom
+            <Button color="secondary" withShadow withPulse>
+              Sombra y Pulso
             </Button>
           </HStack>
         </VStack>

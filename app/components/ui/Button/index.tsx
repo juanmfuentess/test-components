@@ -1,49 +1,101 @@
 import React, { ButtonHTMLAttributes } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { clsx } from "clsx";
 
-type ButtonVariant = "standard" | "outlined" | "ghost";
-type ButtonColor = "primary" | "secondary";
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-lg px-4 py-2 font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
+  {
+    variants: {
+      variant: {
+        standard: "border-2 border-transparent",
+        outlined: "bg-transparent border-2",
+        ghost: "bg-transparent border-2 border-transparent",
+      },
+      color: {
+        primary: "",
+        secondary: "",
+      },
+    },
+    compoundVariants: [
+      {
+        variant: "standard",
+        color: "primary",
+        className:
+          "bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-110",
+      },
+      {
+        variant: "standard",
+        color: "secondary",
+        className:
+          "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:brightness-110",
+      },
+      {
+        variant: "outlined",
+        color: "primary",
+        className:
+          "border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]",
+      },
+      {
+        variant: "outlined",
+        color: "secondary",
+        className:
+          "border-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]",
+      },
+      {
+        variant: "ghost",
+        color: "primary",
+        className: "text-[var(--primary)] hover:bg-[var(--secondary)]",
+      },
+      {
+        variant: "ghost",
+        color: "secondary",
+        className:
+          "text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]",
+      },
+    ],
+    defaultVariants: {
+      variant: "standard",
+      color: "primary",
+    },
+  }
+);
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  variant?: ButtonVariant;
-  color?: ButtonColor;
-  className?: string;
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
+    VariantProps<typeof buttonVariants> {
+  withShadow?: boolean;
+  withPulse?: boolean;
+  withShine?: boolean;
 }
 
-export function Button({
-  children,
-  variant = "standard",
-  color = "primary",
-  className = "",
-  disabled = false,
-  ...props
-}: ButtonProps) {
-  const classes = [];
-
-  classes.push(
-    "px-4 py-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-  );
-
-  const variantStyles = {
-    standard: `text-[var(--${color}-foreground)] bg-[var(--${color})] border-2 border-transparent hover:brightness-110`,
-    outlined: `text-[var(--${color})] bg-transparent border-2 border-[var(--${color})] hover:bg-[var(--${color})] hover:text-[var(--${color}-foreground)]`,
-    ghost: `text-[var(--${color})] bg-transparent border-2 border-transparent hover:bg-[var(--secondary)]`,
-  };
-  classes.push(variantStyles[variant]);
-
-  if (disabled) {
-    classes.push("opacity-50 cursor-not-allowed");
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      color,
+      withShadow = false,
+      withPulse = false,
+      withShine = false,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <button
+        className={clsx(
+          buttonVariants({ variant, color }),
+          {
+            "btn-shadow": withShadow,
+            "btn-pulse": withPulse,
+            "btn-shine": withShine,
+          },
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
   }
-
-  if (className) {
-    classes.push(className);
-  }
-
-  const combinedClassName = classes.join(" ");
-
-  return (
-    <button className={combinedClassName} disabled={disabled} {...props}>
-      {children}
-    </button>
-  );
-}
+);
+Button.displayName = "Button";
