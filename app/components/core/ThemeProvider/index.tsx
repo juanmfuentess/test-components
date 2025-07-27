@@ -12,6 +12,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  // Cambiado a 'light' para que sea el tema por defecto
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {

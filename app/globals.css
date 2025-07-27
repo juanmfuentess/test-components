@@ -1,31 +1,43 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth; /* <-- AÑADIDO PARA SCROLL SUAVE */
+}
+
+/* --- TEMA CLARO (POR DEFECTO) --- */
 :root {
   --background: #ffffff;
   --foreground: #111827;
-
-  --card-background: #ffffff;
+  --card-background: #f9fafb;
   --card-foreground: #111827;
-  
-  --primary: #3b82f6; /* Azul */
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  
-  --secondary: #f3f4f6;
+  --secondary: #e5e7eb;
   --secondary-foreground: #1f2937;
+  --info: #3b82f6;
+  --info-foreground: #ffffff;
+  --success: #10b981;
+  --success-foreground: #ffffff;
+  --danger: #ef4444;
+  --danger-foreground: #ffffff;
 }
 
+/* --- TEMA OSCURO --- */
 .dark {
   --background: #111827;
   --foreground: #f9fafb;
-  
   --card-background: #1f2937;
   --card-foreground: #f9fafb;
-  
   --primary: #60a5fa;
   --primary-foreground: #111827;
-
   --secondary: #374151; 
   --secondary-foreground: #e5e7eb;
+  --info: #60a5fa;
+  --info-foreground: #111827;
+  --success: #34d399;
+  --success-foreground: #111827;
+  --danger: #f87171;
+  --danger-foreground: #111827;
 }
 
 body {
@@ -35,8 +47,49 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* --- ESTILOS PARA EL LOGO --- */
+.logo-container {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-brace {
+  color: var(--primary);
+  animation: brace-glow 2.5s ease-in-out infinite;
+  margin: 0 0.1em;
+}
+
+@keyframes brace-glow {
+  0%, 100% {
+    opacity: 0.7;
+    text-shadow: 0 0 4px var(--primary);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 12px var(--primary);
+  }
+}
+
+.logo-name {
+  background: linear-gradient(to right, #38bdf8, #818cf8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ... (animaciones de botones) ... */
 .btn-shadow {
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
@@ -78,4 +131,18 @@ body {
 .btn-shine:hover::after {
   transform: translateX(100%) translateY(-25%) rotate(20deg);
   transition: transform 0.8s;
+}
+/* --- EFECTO CURSOR PARPADEANTE PARA HERO --- */
+.blinking-cursor {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 0.15em;
+  height: 1.1em;
+  background-color: var(--primary);
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { background-color: transparent }
+  50% { background-color: var(--primary); }
 }

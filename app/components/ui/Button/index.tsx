@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { clsx } from "clsx";
 
@@ -10,6 +10,10 @@ const buttonVariants = cva(
         standard: "border-2 border-transparent",
         outlined: "bg-transparent border-2",
         ghost: "bg-transparent border-2 border-transparent",
+      },
+      size: {
+        md: "px-4 py-2 text-base",
+        lg: "px-8 py-3 text-lg",
       },
       color: {
         primary: "",
@@ -56,35 +60,42 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "standard",
       color: "primary",
+      size: "md",
     },
   }
 );
 
-export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
-    VariantProps<typeof buttonVariants> {
+type ButtonOwnProps<E extends React.ElementType> = {
+  as?: E;
   withShadow?: boolean;
   withPulse?: boolean;
   withShine?: boolean;
-}
+} & VariantProps<typeof buttonVariants>;
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
+export type ButtonProps<E extends React.ElementType> = ButtonOwnProps<E> &
+  Omit<React.ComponentProps<E>, keyof ButtonOwnProps<E> | "color">;
+
+export const Button = React.forwardRef(
+  <E extends React.ElementType = "button">(
     {
+      as,
       className,
       variant,
       color,
-      withShadow = false,
-      withPulse = false,
-      withShine = false,
+      size,
+      // Aquí está la corrección: Sacamos las props personalizadas
+      withShadow,
+      withPulse,
+      withShine,
       ...props
-    },
-    ref
+    }: ButtonProps<E>,
+    ref: React.Ref<HTMLButtonElement>
   ) => {
+    const Component = as || "button";
     return (
-      <button
+      <Component
         className={clsx(
-          buttonVariants({ variant, color }),
+          buttonVariants({ variant, color, size }),
           {
             "btn-shadow": withShadow,
             "btn-pulse": withPulse,
