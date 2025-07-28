@@ -11,7 +11,7 @@ import { Features } from "./components/features/landing/Features";
 
 export default function Home() {
   return (
-    <Box className="bg-slate-900 text-slate-50">
+    <Box>
       <Header />
       <main>
         <Hero />

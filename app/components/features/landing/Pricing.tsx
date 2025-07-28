@@ -11,7 +11,7 @@ export function Pricing() {
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
             Paquetes Pensados para tu Éxito
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="opacity-80 max-w-2xl mx-auto">
             Desde un lanzamiento rápido hasta la optimización total. Encuentra
             el plan perfecto para tus objetivos.
           </p>
@@ -22,7 +22,7 @@ export function Pricing() {
             planName="Arranque Digital"
             description="Ideal para validar ideas y lanzar campañas rápidas."
             price="5,000"
-            discountText="OFERTA"
+            newFeatureText="¡Nuevo!"
             features={[
               "Diseño con Plantilla Pro",
               "100% Responsive",
@@ -36,7 +36,6 @@ export function Pricing() {
             description="La solución completa para capturar leads y medir resultados."
             price="10,000"
             isRecommended
-            discountText="-20% dto"
             features={[
               "Todo lo de Arranque, y:",
               "Diseño 100% Personalizado",
@@ -50,7 +49,6 @@ export function Pricing() {
             planName="Optimización Total"
             description="Para campañas de alto rendimiento que buscan maximizar el ROI."
             price="20,000"
-            newFeatureText="NUEVO"
             features={[
               "Todo lo de Crecimiento, y:",
               "Pruebas A/B",

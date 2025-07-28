@@ -83,7 +83,6 @@ export const Button = React.forwardRef(
       variant,
       color,
       size,
-      // Aquí está la corrección: Sacamos las props personalizadas
       withShadow,
       withPulse,
       withShine,

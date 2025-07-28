@@ -12,7 +12,7 @@ export function CTA() {
           </span>
           ?
         </h2>
-        <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+        <p className="text-lg max-w-2xl mx-auto mb-8 opacity-80">
           Hablemos de tu proyecto. Envíame un mensaje y te responderé en menos
           de 24 horas para agendar una llamada inicial sin compromiso.
         </p>

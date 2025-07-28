@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { clsx } from "clsx";
 import { Container } from "../../ui/Container";
+import { Card } from "../../ui/Card";
 
-// Sub-componente para cada item del FAQ
 const FaqItem = ({
   question,
   children,
@@ -15,7 +15,7 @@ const FaqItem = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-slate-800 rounded-lg">
+    <Card className="rounded-lg overflow-hidden border-none p-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center text-left p-6"
@@ -23,7 +23,7 @@ const FaqItem = ({
         <span className="text-lg font-semibold">{question}</span>
         <span
           className={clsx(
-            "text-sky-400 text-2xl transition-transform transform",
+            "text-sky-500 text-2xl transition-transform transform",
             isOpen && "rotate-45"
           )}
         >
@@ -36,9 +36,9 @@ const FaqItem = ({
           isOpen ? "max-h-96" : "max-h-0"
         )}
       >
-        <div className="px-6 pb-6 text-slate-400">{children}</div>
+        <div className="px-6 pb-6 opacity-80">{children}</div>
       </div>
-    </div>
+    </Card>
   );
 };
 
@@ -50,7 +50,7 @@ export function FAQ() {
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
             Preguntas Frecuentes
           </h2>
-          <p className="text-slate-400">
+          <p className="opacity-80">
             Resolvemos tus dudas más comunes para que tomes la mejor decisión.
           </p>
         </div>

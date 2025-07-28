@@ -7,7 +7,7 @@ type FooterProps = {
 };
 
 export function Footer({ children, className = "" }: FooterProps) {
-  const baseClasses = "w-full py-8 mt-16 border-t";
+  const baseClasses = "w-full py-8 mt-16 footer-divider";
 
   return (
     <footer className={`${baseClasses} ${className}`}>

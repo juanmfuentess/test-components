@@ -12,13 +12,15 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Cambiado a 'light' para que sea el tema por defecto
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
+    root.classList.remove("light");
+
+    if (theme === "light") {
+      root.classList.add("light");
+    }
   }, [theme]);
 
   return (

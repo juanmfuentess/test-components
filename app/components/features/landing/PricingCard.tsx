@@ -19,7 +19,7 @@ interface PricingCardProps {
 const Badge = ({ text, colorClass }: { text: string; colorClass: string }) => (
   <span
     className={clsx(
-      "text-xs font-bold px-4 py-1 rounded-full uppercase",
+      "text-xs font-bold px-4 py-1 rounded-full uppercase text-white",
       colorClass
     )}
   >
@@ -41,7 +41,7 @@ export function PricingCard({
     <Card
       className={clsx(
         "p-8 flex flex-col transition-all duration-300 hover:scale-102 relative",
-        isRecommended && "border-2 border-sky-500 scale-105"
+        isRecommended && "border-2 border-[var(--primary)] scale-105"
       )}
     >
       <HStack
@@ -49,31 +49,22 @@ export function PricingCard({
         className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2"
       >
         {isRecommended && (
-          <Badge
-            text="Más Popular"
-            colorClass="bg-[var(--info)] text-[var(--info-foreground)]"
-          />
+          <Badge text="Más Popular" colorClass="bg-[var(--info)]" />
         )}
         {discountText && (
-          <Badge
-            text={discountText}
-            colorClass="bg-[var(--success)] text-[var(--success-foreground)]"
-          />
+          <Badge text={discountText} colorClass="bg-[var(--success)]" />
         )}
         {newFeatureText && (
-          <Badge
-            text={newFeatureText}
-            colorClass="bg-[var(--danger)] text-[var(--danger-foreground)]"
-          />
+          <Badge text={newFeatureText} colorClass="bg-[var(--danger)]" />
         )}
       </HStack>
 
-      <h3 className="text-2xl font-bold text-sky-400 mb-2">{planName}</h3>
-      <p className="text-slate-400 mb-6 min-h-[50px]">{description}</p>
+      <h3 className="text-2xl font-bold text-sky-500 mb-2">{planName}</h3>
+      <p className="opacity-70 mb-6 min-h-[50px]">{description}</p>
       <p className="text-4xl font-bold mb-6">
-        {price} <span className="text-lg font-normal text-slate-400">MXN</span>
+        {price} <span className="text-lg font-normal opacity-70">MXN</span>
       </p>
-      <ul className="space-y-4 text-slate-300 mb-8 flex-grow">
+      <ul className="space-y-4 mb-8 flex-grow opacity-90">
         {features.map((feature, index) => (
           <PricingListItem key={index}>{feature}</PricingListItem>
         ))}
@@ -81,12 +72,8 @@ export function PricingCard({
       <Button
         as="a"
         href="#contacto"
-        className={clsx(
-          isRecommended
-            ? "bg-sky-500 hover:bg-sky-600 text-white"
-            : "bg-slate-700 hover:bg-slate-600 text-white",
-          "w-full text-center"
-        )}
+        color={isRecommended ? "primary" : "secondary"}
+        className="w-full text-center"
       >
         {buttonText}
       </Button>

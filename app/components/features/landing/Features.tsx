@@ -1,9 +1,8 @@
 import { Container } from "../../ui/Container";
-import { Grid, GridItem } from "../../ui/Grid";
+import { Grid } from "../../ui/Grid";
 import { Card } from "../../ui/Card";
 import { Box } from "../../ui/Box";
 
-// Iconos como componentes para reutilización
 const SpeedIcon = () => (
   <svg
     className="w-6 h-6"
@@ -53,7 +52,6 @@ const AnimationIcon = () => (
   </svg>
 );
 
-// Sub-componente para las tarjetas de características
 const FeatureCard = ({
   icon,
   title,
@@ -68,19 +66,19 @@ const FeatureCard = ({
       {icon}
     </Box>
     <h3 className="text-xl font-bold mb-2">{title}</h3>
-    <p className="text-slate-400">{children}</p>
+    <p className="opacity-80">{children}</p>
   </Card>
 );
 
 export function Features() {
   return (
-    <section id="features" className="py-20 bg-slate-900">
+    <section id="features" className="py-20 bg-[var(--secondary)]">
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
             Una Experiencia de Usuario que Enamora
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="opacity-80 max-w-2xl mx-auto">
             Cada detalle está pensado para guiar, deleitar y convertir a tus
             visitantes.
           </p>

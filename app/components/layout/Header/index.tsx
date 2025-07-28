@@ -13,8 +13,9 @@ export function Header({
   isSticky = false,
 }: HeaderProps) {
   const baseClasses = "w-full py-4";
+
   const stickyClasses = isSticky
-    ? "sticky top-0 z-50 bg-[var(--background)] shadow-sm"
+    ? "sticky top-0 z-50 bg-[var(--background)]/80 shadow-sm backdrop-blur-sm"
     : "";
 
   return (

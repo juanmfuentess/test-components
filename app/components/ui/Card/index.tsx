@@ -13,7 +13,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <Component
         ref={ref}
         className={clsx(
-          "bg-slate-800 rounded-2xl border border-slate-700",
+          "bg-[var(--card-background)] rounded-2xl border border-[var(--secondary)]",
           className
         )}
         {...props}
